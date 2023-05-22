@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import './App.css';
+import "./App.css";
 import AddCity from "./components/AddCity";
+import Dark from "./components/Dark";
 
 function App() {
   const [data, setData] = useState();
@@ -35,6 +36,7 @@ function App() {
 
   return (
     <div className="App">
+      <Dark />
       <AddCity />
       <div className="app_container">
         <div className="app_icon">
