@@ -31,9 +31,9 @@ body {
   min-height: 100vh;
   --border: #093059;
   --bg: rgba(42, 71, 149, 0.2);
-  --accent: #031435;
-  --text_w: #bdbdbd;
-  --text_wt: rgba(42, 71, 149, 0.9);
+  --accent: #d1b91f;
+  --text_w: #626262;
+  --text_wt: rgba(255, 255, 255, 0.3);
   --text_b: #ffffff;
   --shadow: rgba(0, 0, 0, 0.5);
   font-family: "Poppins", sans-serif;
@@ -70,6 +70,7 @@ body {
   z-index: 5;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  color: var(--text_b);
 }
 
 .AddCity button:hover {
