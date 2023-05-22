@@ -23,6 +23,23 @@ body {
   color: var(--text_b);
 }
 
+.night {
+  background-image: url(./img/night_bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  --border: #093059;
+  --bg: rgba(42, 71, 149, 0.2);
+  --accent: #031435;
+  --text_w: #bdbdbd;
+  --text_wt: rgba(42, 71, 149, 0.9);
+  --text_b: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.5);
+  font-family: "Poppins", sans-serif;
+  color: var(--text_b);
+}
+
 /*--------------------------
     Search bar class
 --------------------------*/
@@ -33,7 +50,7 @@ body {
 
 .AddCity input {
   width: 100%;
-  background: var(--text_wt);
+  background: var(--bg);
   border: 2px solid var(--border);
   border-radius: 30px;
   padding: 10px 20px;
@@ -272,4 +289,23 @@ body {
   .app_data p span {
     font-size: 18px;
   }
+}
+
+.dark {
+  width: 150px;
+  position: absolute;
+  top: -2px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 0 0 30px 30px;
+  padding: 10px 20px;
+  text-align: center;
+  z-index: 5;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dark:hover {
+  background: var(--accent);
+  color: var(--text_w);
 }
