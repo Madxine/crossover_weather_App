@@ -54,6 +54,7 @@ body {
   border: 2px solid var(--border);
   border-radius: 30px;
   padding: 10px 20px;
+  color: var(--text_b);
 }
 
 .AddCity button {

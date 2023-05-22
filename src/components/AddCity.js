@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import AddCityContent from "./AddCityContent";
 
 export default function AddCity() {
-  const [query, setQuery] = useState();
-  const [data, setData] = useState();
+  const [query, setQuery] = useState("");
+  const [data, setData] = useState(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=0a0139df6eb24bd9acc112311230704&q=${query}`
-      );
-      const data = await response.json();
-      setData(data);
+      if (query) {
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/current.json?key=0a0139df6eb24bd9acc112311230704&q=${query}`
+        );
+        const data = await response.json();
+        setData(data);
+      }
     };
 
     fetchData();
   }, [query]);
-  console.log(data);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setQuery(event.target[0].value);
+    setQuery(inputRef.current.value);
   };
 
-  console.log(data);
   return (
     <div className="AddCity">
       <form onSubmit={handleSubmit}>
-        <input className="input-search" type="text" value={query} />
+        <input className="input-search" type="text" ref={inputRef} />
         <button type="submit">Add City</button>
       </form>
 
