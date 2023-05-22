@@ -1,39 +1,44 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import './App.css';
 import AddCity from "./components/AddCity";
 
 function App() {
   const [data, setData] = useState();
   const [query, setQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Get the user's location and update the query state
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
       setQuery(`${position.coords.latitude},${position.coords.longitude}`);
     });
   }, []);
 
-  // Fetch weather data when the query state changes
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       const response = await fetch(
         `https://api.weatherapi.com/v1/current.json?key=0a0139df6eb24bd9acc112311230704&q=${query}`
       );
       const data = await response.json();
       setData(data);
+      setIsLoading(false);
     };
 
     if (query) {
       fetchData();
     }
   }, [query]);
-  console.log(data);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="App">
       <AddCity />
       <div className="app_container">
         <div className="app_icon">
-          <img src={data?.current.condition.icon} />
+          <img src={data?.current.condition.icon} alt="Weather icon" />
           <span>{data?.current.condition.text}</span>
         </div>
         <div className="app_info">
@@ -54,28 +59,28 @@ function App() {
         <div>
           <span>Temperature</span>
           <p>
-            {data.current.temp_c}
+            {data?.current.temp_c}
             <span>°C</span>
           </p>
         </div>
         <div>
           <span>Humidity</span>
           <p>
-            {data.current.humidity}
+            {data?.current.humidity}
             <span>%</span>
           </p>
         </div>
         <div>
           <span>Pressure</span>
           <p>
-            {data.current.pressure_mb}
+            {data?.current.pressure_mb}
             <span>mb</span>
           </p>
         </div>
         <div>
           <span>Wind</span>
           <p>
-            {data.current.wind_kph}
+            {data?.current.wind_kph}
             <span>km/h</span>
           </p>
         </div>
